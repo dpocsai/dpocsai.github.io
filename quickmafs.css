@@ -12,17 +12,17 @@ li {
 }
 
 .div {
-	width: 80px;
-	height: 80px;
+	width: 140px;
+	height: 140px;
 	border: 3px solid black;
 	background-color: lightgray;
-	font-family: monospace;
-	margin-top: 10px;
+	font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+	margin-top: 20px;
 
-	font-size: 20px;
+	font-size: 40px;
 	text-align: center;
-	line-height: 80px;
-	font-weight: 600;
+	line-height: 140px;
+	font-weight: 900;
 	border-radius: 15%;
 }
 #section {
@@ -30,8 +30,8 @@ li {
 	grid-template-columns: 1fr 1fr 1fr;
 }
 .btn {
-	width: 50px;
-	height: 50px;
+	width: 80px;
+	height: 80px;
 	font-size: 30px;
 	background-color: skyblue;
 	border-radius: 20%;
@@ -49,10 +49,10 @@ h2 {
 	text-align: center;
 }
 a {
-	font-size: 20px;
+	font-size: 40px;
 	text-decoration: none;
 	font-weight: 600;
-	font-family: monospace;
+	font-family: Roboto;
 	color: black;
 	border: 3px solid black;
 	padding: 5px;
@@ -63,9 +63,10 @@ h1 {
 	color: skyblue;
 	text-decoration-style: solid;
 	border-bottom: 3px solid skyblue;
-	font-family: monospace;
+	font-family: Arial;
 	border-radius: 15%;
 	padding: 10px;
+	font-size: 50px;
 }
 img {
 	max-width: 400px;
