@@ -1,10 +1,7 @@
 const boxes = document.querySelectorAll('div');
 let x = [];
 let records = [];
-let nums = [];
-while (nums.length < 18) {
-	nums.push(Math.floor(Math.random() * 10));
-}
+
 for (let i = 0; i < boxes.length; i++) {
 	const plus = document.querySelector('#plus');
 	const times = document.querySelector('#times');
@@ -26,7 +23,7 @@ for (let i = 0; i < boxes.length; i++) {
 					const h3 = document.querySelector('h3');
 					const f = new Date() / 1000;
 					const time = f - s;
-					h3.innerText = `TIME: ${time}`;
+					h3.innerText = `${time}`;
 				}
 			}
 		});
