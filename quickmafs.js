@@ -10,6 +10,7 @@ for (let i = 0; i < boxes.length; i++) {
 		boxes[i].innerText = `${Math.floor(Math.random() * 10)} + ${Math.floor(Math.random() * 10)}`;
 		x.push(+boxes[i].innerText[0] + +boxes[i].innerText[4]);
 		x.sort((a, b) => a - b);
+		console.log(x);
 		boxes[i].addEventListener('click', function() {
 			if (+boxes[i].innerText[0] + +boxes[i].innerText[4] !== Math.min(...x)) {
 				document.body.style.backgroundColor = 'maroon';
@@ -23,7 +24,7 @@ for (let i = 0; i < boxes.length; i++) {
 					const h3 = document.querySelector('h3');
 					const f = new Date() / 1000;
 					const time = f - s;
-					h3.innerText = `${time}`;
+					h3.innerText = `ADDITION ${time}`;
 				}
 			}
 		});
@@ -46,7 +47,7 @@ for (let i = 0; i < boxes.length; i++) {
 					const h3 = document.querySelector('h3');
 					const f = new Date() / 1000;
 					const time = f - s;
-					h3.innerText = `${time}`;
+					h3.innerText = `MULTIPLICATION   ${time}`;
 				}
 			}
 		});
