@@ -10,8 +10,16 @@ const time = document.querySelector('.time');
 let check = [];
 let score = 0;
 let highscore = 0;
-
+let all = 0;
+let good = 0;
+let bad = 0;
+const allh5 = document.querySelector('.all');
+const goodh5 = document.querySelector('.good');
+const badh5 = document.querySelector('.bad');
 start.addEventListener('click', function() {
+	allh5.innerText = '';
+	goodh5.innerText = '';
+	badh5.innerText = '';
 	time.style.border = '2px solid white';
 	let t = 19;
 	const testtimer = () => {
@@ -39,6 +47,9 @@ start.addEventListener('click', function() {
 		}
 		score = 0;
 		check = [];
+		allh5.innerText = `Total: ${all}`;
+		goodh5.innerText = `Correct: ${good}`;
+		badh5.innerText = `Incorrect: ${bad}`;
 		high.disabled = true;
 		low.disabled = true;
 		same.disabled = true;
@@ -49,7 +60,7 @@ start.addEventListener('click', function() {
 		}, 1200);
 	}, 20000);
 	h2.innerText = score;
-	let num = Math.floor(Math.random() * 18);
+	let num = Math.floor(Math.random() * 16);
 	question.innerText = `${num}`;
 	check.push(num);
 	equation.innerText = `${Math.floor(Math.random() * 10)}+${Math.floor(Math.random() * 10)}`;
@@ -62,19 +73,25 @@ start.addEventListener('click', function() {
 		clearInterval(test);
 		question.innerText = `HIGHSCORE: ${highscore}`;
 		equation.innerHTML = 'Tap<span> START </span>to begin';
-
+		allh5.innerText = '';
+		goodh5.innerText = '';
+		badh5.innerText = '';
 		time.innerText = '20';
 	});
 });
 high.addEventListener('click', function() {
 	if (+equation.innerText[0] + +equation.innerText[2] > check[check.length - 1]) {
 		score++;
+		all++;
+		good++;
 		h2.innerText = `${score}`;
 		h2.style.border = '2px solid green';
 		setTimeout(() => {
 			h2.style.border = '2px solid white';
 		}, 300);
 	} else {
+		all++;
+		bad++;
 		score -= 2;
 		h2.innerText = `${score}`;
 		h2.style.border = '2px solid red';
@@ -91,12 +108,16 @@ high.addEventListener('click', function() {
 same.addEventListener('click', function() {
 	if (+equation.innerText[0] + +equation.innerText[2] === check[check.length - 1]) {
 		score++;
+		all++;
+		good++;
 		h2.innerText = `${score}`;
 		h2.style.border = '2px solid green';
 		setTimeout(() => {
 			h2.style.border = '2px solid white';
 		}, 300);
 	} else {
+		all++;
+		bad++;
 		score -= 2;
 		h2.innerText = `${score}`;
 		h2.style.border = '2px solid red';
@@ -113,12 +134,16 @@ same.addEventListener('click', function() {
 low.addEventListener('click', function() {
 	if (+equation.innerText[0] + +equation.innerText[2] < check[check.length - 1]) {
 		score++;
+		all++;
+		good++;
 		h2.innerText = `${score}`;
 		h2.style.border = '2px solid green';
 		setTimeout(() => {
 			h2.style.border = '2px solid white';
 		}, 300);
 	} else {
+		all++;
+		bad++;
 		score -= 2;
 		h2.innerText = `${score}`;
 		h2.style.border = '2px solid red';

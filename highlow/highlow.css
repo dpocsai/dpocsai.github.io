@@ -3,7 +3,7 @@ h1 {
 	text-align: center;
 	color: white;
 	font-size: 30px;
-	border-bottom: 3px dashed white;
+	border-bottom: 3px solid white;
 	border-radius: 15%;
 }
 section {
@@ -50,6 +50,7 @@ section {
 	border: none;
 	border-radius: 50%;
 }
+
 .same:focus {
 	outline: 0;
 }
@@ -119,4 +120,21 @@ span {
 	float: left;
 	width: 50px;
 	border-radius: 10%;
+}
+
+h5 {
+	color: white;
+	margin-top: 2px;
+	margin-bottom: 5px;
+	text-align: center;
+	font-size: 15px;
+}
+.good {
+	color: rgb(0, 94, 0);
+}
+.bad {
+	color: rgb(94, 0, 9);
+}
+.all {
+	color: lightgray;
 }
