@@ -16,10 +16,8 @@ start.addEventListener('click', function() {
 		equation.innerText = `SCORE: ${score}`;
 		if (score > highscore) {
 			highscore = score;
-			const h2 = document.querySelector('h2');
-			h2.innerText = `HIGHSCORE: ${score}`;
 		}
-	}, 10000);
+	}, 20000);
 	let num = Math.floor(Math.random() * 18);
 	question.innerText = `${num}`;
 	check.push(num);
@@ -69,31 +67,31 @@ reset.addEventListener('click', function() {
 });
 high.addEventListener('click', function() {
 	high.style.backgroundColor = 'rgb(0, 124, 0)';
-	high.style.width = '105px';
-	high.style.height = '105px';
+	high.style.width = '155px';
+	high.style.height = '155px';
 	setTimeout(function() {
 		high.style.backgroundColor = 'rgb(0, 94, 0)';
-		high.style.width = '100px';
-		high.style.height = '100px';
+		high.style.width = '150px';
+		high.style.height = '150px';
 	}, 100);
 });
 low.addEventListener('click', function() {
 	low.style.backgroundColor = 'rgb(124, 0, 0)';
-	low.style.width = '105px';
-	low.style.height = '105px';
+	low.style.width = '155px';
+	low.style.height = '155px';
 	setTimeout(function() {
 		low.style.backgroundColor = 'rgb(94, 0, 0)';
-		low.style.width = '100px';
-		low.style.height = '100px';
+		low.style.width = '150px';
+		low.style.height = '150px';
 	}, 100);
 });
 same.addEventListener('click', function() {
 	same.style.backgroundColor = 'rgb(0, 0, 124)';
-	same.style.width = '105px';
-	same.style.height = '105px';
+	same.style.width = '155px';
+	same.style.height = '155px';
 	setTimeout(function() {
-		same.style.backgroundColor = 'rgb(0, 0, 124)';
-		same.style.width = '100px';
-		same.style.height = '100px';
+		same.style.backgroundColor = 'rgb(0, 0, 94)';
+		same.style.width = '150px';
+		same.style.height = '150px';
 	}, 100);
 });
