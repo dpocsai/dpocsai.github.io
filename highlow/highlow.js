@@ -20,6 +20,9 @@ start.addEventListener('click', function() {
 	allh5.innerText = '';
 	goodh5.innerText = '';
 	badh5.innerText = '';
+	all = 0;
+	good = 0;
+	bad = 0;
 	time.style.border = '2px solid white';
 	let t = 19;
 	const testtimer = () => {
@@ -60,7 +63,7 @@ start.addEventListener('click', function() {
 		}, 1200);
 	}, 20000);
 	h2.innerText = score;
-	let num = Math.floor(Math.random() * 16);
+	let num = Math.floor(Math.random() * 17);
 	question.innerText = `${num}`;
 	check.push(num);
 	equation.innerText = `${Math.floor(Math.random() * 10)}+${Math.floor(Math.random() * 10)}`;
@@ -76,6 +79,10 @@ start.addEventListener('click', function() {
 		allh5.innerText = '';
 		goodh5.innerText = '';
 		badh5.innerText = '';
+		all = 0;
+		good = 0;
+		bad = 0;
+
 		time.innerText = '20';
 	});
 });
@@ -99,7 +106,7 @@ high.addEventListener('click', function() {
 			h2.style.border = '2px solid white';
 		}, 300);
 	}
-	let num = Math.floor(Math.random() * 18);
+	let num = Math.floor(Math.random() * 17);
 	question.innerText = `${num}`;
 	check.push(num);
 	equation.innerText = `${Math.floor(Math.random() * 10)}+${Math.floor(Math.random() * 10)}`;
@@ -125,7 +132,7 @@ same.addEventListener('click', function() {
 			h2.style.border = '2px solid white';
 		}, 300);
 	}
-	let num = Math.floor(Math.random() * 18);
+	let num = Math.floor(Math.random() * 17);
 	question.innerText = `${num}`;
 	check.push(num);
 	equation.innerText = `${Math.floor(Math.random() * 10)}+${Math.floor(Math.random() * 10)}`;
@@ -151,7 +158,7 @@ low.addEventListener('click', function() {
 			h2.style.border = '2px solid white';
 		}, 300);
 	}
-	let num = Math.floor(Math.random() * 18);
+	let num = Math.floor(Math.random() * 17);
 	question.innerText = `${num}`;
 	check.push(num);
 	equation.innerText = `${Math.floor(Math.random() * 10)}+${Math.floor(Math.random() * 10)}`;
