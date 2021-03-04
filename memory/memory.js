@@ -12,7 +12,7 @@ let hardNums = [];
 let scorecount = 0;
 let idx = 3;
 let s = 1;
-
+let highscore = 0;
 hard.addEventListener('click', function() {
 	rules.innerText = 'TAP HERE FOR RULES';
 	score.innerText = `Score: 0`;
@@ -46,9 +46,12 @@ hard.addEventListener('click', function() {
 		}
 		if (t === -1) {
 			clearInterval(test);
+			if (scorecount > highscore) {
+				question.innerText = `NEW HIGHSCORE! ${scorecount}`;
+			}
 			time.innerText = `Time: 0`;
 			guess.disabled = true;
-			question.innerText = 'Select Difficulty';
+
 			idx = 3;
 			s = 1;
 			scorecount = 0;
@@ -97,6 +100,7 @@ for (let b of boxes) {
 				}, 80);
 			}
 		} else {
+			s = 1;
 			scorecount--;
 			for (let box of boxes) {
 				box.style.backgroundColor = 'rgb(255,40,46)';
@@ -124,6 +128,6 @@ for (let b of boxes) {
 rules.addEventListener('click', function() {
 	rules.innerText =
 		rules.innerText === 'TAP HERE FOR RULES'
-			? 'Upon selecting a difficulty, the timer will count down from 60 seconds and 3 random numbers will appear in the grid. Quickly memorize their position and tap GUESS when ready, keeping in mind that the timer is constantly running. The numbers will then dissapear and a question will pop up asking you to tap the box in which the number was in. If correct, 1 point is awarded and now 4 random numbers will appear. If wrong, 1 point is taken away and the same amount of randoms numbers will appear. This continues until the grid is full. After the grid is full, the points rewarded per correct answer will increase by 1 each time. The penalty for wrong answers remains the same however. Tap anywhere in this box to hide rules.'
+			? 'Upon selecting a difficulty, the timer will count down from 60 seconds and 3 random numbers will appear in the grid. Quickly memorize their position and tap GUESS when ready, keeping in mind that the timer is constantly running. The numbers will then dissapear and a question will pop up asking you to tap the box in which the number was in. If correct, 1 point is awarded and now 4 random numbers will appear. If wrong, 1 point is taken away and the same amount of randoms numbers will appear. This continues until the grid is full. After the grid is full, the points rewarded per CORRECT answer will increase by 1 each time. However a wrong answer will end the point combo and reset the point reward to 1. Tap anywhere in this box to hide rules.'
 			: 'TAP HERE FOR RULES';
 });
