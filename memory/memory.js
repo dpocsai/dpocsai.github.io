@@ -31,9 +31,11 @@ hard.addEventListener('click', function() {
 		let hrn = Math.floor(Math.random() * idx) + 1;
 		if (!hardNums.includes(hrn)) hardNums.push(hrn);
 	}
+	for (let box of boxes) {
+		box.disabled = false;
+	}
 	for (let i = 0; i < idx; i++) {
 		boxes[i].innerText = hardNums[i];
-		boxes[i].disabled = false;
 	}
 	let t = 59;
 	const testtimer = () => {
@@ -68,7 +70,7 @@ hard.addEventListener('click', function() {
 		for (let box of boxes) {
 			box.innerText = '';
 			box.style.fontSize = '35px';
-			box.disabled = true;
+			box.disabled = false;
 		}
 		hardNums = [];
 		question.innerText = 'Select Difficulty';
@@ -95,7 +97,7 @@ for (let b of boxes) {
 				}, 80);
 			}
 		} else {
-			scorecount -= s;
+			scorecount--;
 			for (let box of boxes) {
 				box.style.backgroundColor = 'rgb(255,40,46)';
 				setTimeout(function() {

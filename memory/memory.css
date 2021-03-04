@@ -99,8 +99,8 @@ button:focus {
 	margin: 5px;
 	display: grid;
 	box-sizing: border-box;
-	min-height: 100px;
-	min-width: 100px;
+	min-height: 110px;
+	min-width: 110px;
 	align-self: center;
 	border: 3px solid black;
 	align-items: center;
