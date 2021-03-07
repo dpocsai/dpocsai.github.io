@@ -30,11 +30,11 @@ start.addEventListener('click', function() {
 	makeNums();
 	scoreCount = 0;
 	score.innerText = 'Score:0';
-	let t = 19;
+	let t = 29;
 	const timer = () => {
 		time.innerText = `Time:${t}`;
 		t--;
-		if (t < 3) {
+		if (t < 5) {
 			time.style.color = 'red';
 		}
 		if (t === -1) {
@@ -59,9 +59,9 @@ start.addEventListener('click', function() {
 		question.innerText = '?';
 		scoreCount = 0;
 		score.innerText = 'Score:0';
-		time.innerText = `Time:20`;
+		time.innerText = `Time:30`;
 		time.style.color = 'black';
-		t = 19;
+		t = 29;
 	});
 });
 

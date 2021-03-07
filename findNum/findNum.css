@@ -5,10 +5,12 @@ body {
 .boxes {
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr 1fr;
+	align-items: center;
+	justify-items: center;
 }
 .div {
-	width: 80px;
-	height: 80px;
+	width: 90px;
+	height: 90px;
 	margin: 2px;
 	border-radius: 8%;
 	background-color: rgba(255, 255, 255, 0.664);
@@ -16,6 +18,9 @@ body {
 	font-weight: 700;
 	border: 2px solid black;
 	box-sizing: border-box;
+	display: grid;
+	align-self: center;
+	justify-self: center;
 }
 .div:focus {
 	outline: none;
