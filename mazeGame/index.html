@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.15.0/matter.min.js" integrity="sha512-zbys69L/QzU+IIRLUIMXpYidZQk85uqm1kc70CQltVQ+bRHhxPPyQEb3+xezs0gNP+L+HpR8lGFuc129yE+mBA==" crossorigin="anonymous"></script>
+    <style>
+    .hidden{
+        display: none !important
+    }
+    a{
+        text-decoration: none;
+        color:white;
+        font-size:60px;
+    }
+    h1{
+        color:white;
+        font-size:60px;
+    }
+    .winner{
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        position:absolute;
+        z-index: 1;
+        height: 100vh;
+        width: 100vw;
+    }
+    body{
+        margin:0;
+        overflow:hidden;
+    }
+    </style>
+</head>
+<body>
+    <div class="winner hidden">
+        <h1><a href="http://dpocsai.github.io/mazeGame/index.html">You Win! </a></h1>
+    </div>
+    <script src="index.js"></script>
+</body>
+</html>
