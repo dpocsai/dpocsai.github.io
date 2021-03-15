@@ -188,7 +188,7 @@ Events.on(engine, 'collisionStart', (e) => {
 		const bad = [ 'wall', 'border' ];
 		if (bad.includes(collision.bodyA.label || bad.includes(collision.bodyB.label))) {
 			document.querySelector('h1').innerHTML =
-				"<h1><a href='http://127.0.0.1:5500/mazeGame/index.html'>You Lost! </a></h1>";
+				"<h1><a href='dpocsai.github.io/mazeGame/index.html'>You Lost! </a></h1>";
 			document.querySelector('.winner').classList.remove('hidden');
 		}
 
