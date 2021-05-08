@@ -1,0 +1,18 @@
+html,
+body {
+  overscroll-behavior-y: contain;
+}
+.submit {
+  width: auto;
+  height: auto;
+  margin: auto;
+}
+.heading {
+  background-color: aliceblue;
+}
+.tg {
+  margin: auto;
+}
+.names {
+  margin: auto;
+}
