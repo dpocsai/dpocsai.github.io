@@ -3,16 +3,40 @@ body {
   overscroll-behavior-y: contain;
 }
 .submit {
-  width: auto;
-  height: auto;
+  height: 40px;
   margin: auto;
+
+  text-align: center;
+}
+.names {
+  height: 40px;
+  margin: auto;
+
+  text-align: center;
+}
+.info {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
 }
 .heading {
-  background-color: aliceblue;
+  background-color: lightgray;
 }
 .tg {
   margin: auto;
+  width: 400px;
 }
 .names {
   margin: auto;
+}
+.scoreInput {
+  width: 80px;
+  margin-right: 10px;
+  margin-left: 10px;
+  height: 30px;
+  justify-self: center;
+}
+.scoreSubmit {
+  width: 80px;
+  height: 30px;
 }
