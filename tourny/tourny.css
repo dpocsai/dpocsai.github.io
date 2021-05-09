@@ -32,6 +32,7 @@ body {
 .tg {
   margin: auto;
   width: auto;
+  width: 100%;
 }
 .names {
   margin: auto;
@@ -46,7 +47,7 @@ body {
 .scoreSubmit {
   width: 70px;
   height: 30px;
-  background-color: rgb(255, 207, 145);
+  background-color: ghostwhite
   font-family: monospace;
 }
 input {
