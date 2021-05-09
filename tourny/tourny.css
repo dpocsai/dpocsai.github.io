@@ -1,18 +1,25 @@
 html,
 body {
-  overscroll-behavior-y: contain;
+  background-color: ghostwhite;
+  font-family: monospace;
 }
 .submit {
   height: 40px;
   margin: auto;
-
+  background-color: rgb(158, 187, 240);
   text-align: center;
+  font-family: monospace;
+  font-size: 16px;
+  padding: 0px;
+  width: 45%;
 }
 .names {
   height: 40px;
   margin: auto;
-
   text-align: center;
+  font-size: 14px;
+  font-family: monospace;
+  width: 45%;
 }
 .info {
   display: flex;
@@ -20,23 +27,36 @@ body {
   align-items: flex-end;
 }
 .heading {
-  background-color: lightgray;
+  background-color: rgb(158, 187, 240);
 }
 .tg {
   margin: auto;
-  width: 400px;
+  width: auto;
 }
 .names {
   margin: auto;
 }
 .scoreInput {
-  width: 80px;
+  width: 60px;
   margin-right: 10px;
   margin-left: 10px;
   height: 30px;
   justify-self: center;
 }
 .scoreSubmit {
-  width: 80px;
+  width: 70px;
   height: 30px;
+  background-color: rgb(255, 207, 145);
+  font-family: monospace;
+}
+input {
+  text-align: center;
+}
+td {
+  text-align: center;
+}
+.A,
+.B {
+  font-weight: 500;
+  font-size: 7px;
 }

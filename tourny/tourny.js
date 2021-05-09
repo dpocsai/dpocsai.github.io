@@ -82,7 +82,11 @@ let displaySchedule = () => {
 };
 
 namesSubmit.addEventListener("click", function () {
-  names = nameInput.value.trim().replace(/\s+/g, " ").split(" ");
+  names = nameInput.value
+    .trim()
+    .replace(/[\s+,]/g, " ")
+    .split(" ");
+  names = randomizeArray(names);
   if (names.length < 4) return (nameInput.value = "");
   nameInput.value = "";
   if (names.length % 2 === 1) {
@@ -103,6 +107,8 @@ let adjustStatsWinner = (winner, score) => {
     stats[winningPlayer].DIF =
       stats[winningPlayer].PF - stats[winningPlayer].PA;
   }
+
+  return stats;
 };
 
 let adjustStatsLoser = (loser, score) => {
@@ -113,12 +119,14 @@ let adjustStatsLoser = (loser, score) => {
     stats[losingPlayer].PA -= +score[0];
     stats[losingPlayer].DIF = stats[losingPlayer].PF - stats[losingPlayer].PA;
   }
+
+  return stats;
 };
 let isWinner = (winner, score) => {
   winner = winner.split(",");
-  if (winner.join(",") === playTwice.join(",") && alreadyPlayed === true) {
+  /* if (winner.join(",") === playTwice.join(",") && alreadyPlayed === true) {
     adjustStatsWinner(winner, score);
-  }
+  } */
   for (let winningPlayer of winner) {
     stats[winningPlayer].GP++;
     stats[winningPlayer].W++;
@@ -153,36 +161,62 @@ let isLoser = (loser, score) => {
 };
 let rankTeams = () => {
   let statsArray = Object.entries(stats).map((el) => el[1]);
-  let r = _.sortBy(statsArray, ["W", "DIF", "PF", "PA"]).reverse();
+  let ranked = _.sortBy(statsArray, ["W", "DIF", "PF", "PA"]).reverse();
   rank.forEach((rank, idx) => (rank.innerText = idx + 1 || ""));
-  r.map((row, idx) => (ID[idx].innerText = row["name"]));
-  r.map((row, idx) => (W[idx].innerText = row["W"]));
-  r.map((row, idx) => (L[idx].innerText = row["L"]));
-  r.map((row, idx) => (PF[idx].innerText = row["PF"]));
-  r.map((row, idx) => (PA[idx].innerText = row["PA"]));
-  r.map((row, idx) => (DIF[idx].innerText = row["DIF"]));
-  r.map((row, idx) => (GP[idx].innerText = row["GP"]));
+  ranked.map((row, idx) => (ID[idx].innerText = row["name"]));
+  ranked.map((row, idx) => (W[idx].innerText = row["W"]));
+  ranked.map((row, idx) => (L[idx].innerText = row["L"]));
+  ranked.map((row, idx) => (PF[idx].innerText = row["PF"]));
+  ranked.map((row, idx) => (PA[idx].innerText = row["PA"]));
+  ranked.map((row, idx) => (DIF[idx].innerText = row["DIF"]));
+  ranked.map((row, idx) => (GP[idx].innerText = row["GP"]));
 };
-scoreSubmit.forEach((score, idx) => {
-  score.addEventListener("click", function () {
-    let A = document.querySelectorAll(".A");
-    let B = document.querySelectorAll(".B");
-    score = scoreInput[idx].value.split("-");
-    if (+score[0] > +score[1]) {
-      isWinner(A[idx].innerText, score);
-      isLoser(B[idx].innerText, score);
-      A[idx].style.backgroundColor = "lightGreen";
-      B[idx].style.backgroundColor = "lightCoral";
-    } else if (+score[1] > +score[0]) {
-      isWinner(B[idx].innerText, score.reverse());
-      isLoser(A[idx].innerText, score);
-      B[idx].style.backgroundColor = "lightGreen";
-      A[idx].style.backgroundColor = "lightCoral";
+let A = document.querySelectorAll(".A");
+let B = document.querySelectorAll(".B");
+let sendGameData = (score, idx) => {
+  if (+score[0] > +score[1]) {
+    isWinner(A[idx].innerText, score);
+    isLoser(B[idx].innerText, score);
+    A[idx].style.backgroundColor = "rgb(194, 240, 194)";
+    A[idx].style.fontWeight = "600";
+    B[idx].style.backgroundColor = "rgb(255, 179, 179)";
+  } else if (+score[1] > +score[0]) {
+    isWinner(B[idx].innerText, score.reverse());
+    isLoser(A[idx].innerText, score);
+    B[idx].style.backgroundColor = "rgb(194, 240, 194)";
+    B[idx].style.fontWeight = "600";
+    A[idx].style.backgroundColor = "rgb(255, 179, 179)";
+  }
+  rankTeams();
+};
+let revertGameData = (score, idx) => {
+  if (+score[0] > +score[1]) {
+    A[idx].style.backgroundColor = "white";
+    A[idx].style.fontWeight = "500";
+    B[idx].style.backgroundColor = "white";
+
+    adjustStatsWinner(A[idx].innerText.split(","), score);
+    adjustStatsLoser(B[idx].innerText.split(","), score);
+  } else if (+score[1] > +score[0]) {
+    B[idx].style.backgroundColor = "white";
+    B[idx].style.fontWeight = "500";
+    A[idx].style.backgroundColor = "white";
+    adjustStatsWinner(B[idx].innerText.split(","), score.reverse());
+    adjustStatsLoser(A[idx].innerText.split(","), score);
+  }
+  rankTeams();
+};
+scoreSubmit.forEach((submit, idx) => {
+  submit.addEventListener("click", function () {
+    if (/^\d+-\d+$/.test(scoreInput[idx].value)) {
+      submit.disabled = true;
+
+      sendGameData(scoreInput[idx].value.split("-"), idx);
     }
-    rankTeams();
+    scoreInput[idx].addEventListener("click", function () {
+      submit.disabled = false;
+      revertGameData(scoreInput[idx].value.split("-"), idx);
+      scoreInput[idx].value = "";
+    });
   });
 });
-
-//look into preventing accidental refresh.
-//randomize teams upon input, because last and second last teams will play each other more
-//prevent multiple clicks of score button
