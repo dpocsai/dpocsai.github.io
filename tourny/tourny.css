@@ -47,7 +47,7 @@ body {
 .scoreSubmit {
   width: 70px;
   height: 30px;
-  background-color: ghostwhite
+  background-color: ghostwhite;
   font-family: monospace;
 }
 input {
