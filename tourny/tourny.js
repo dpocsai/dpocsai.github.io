@@ -2,7 +2,6 @@ const nameInput = document.querySelector(".names");
 const namesSubmit = document.querySelector(".submit");
 const scoreInput = document.querySelectorAll(".scoreInput");
 const scoreSubmit = document.querySelectorAll(".scoreSubmit");
-
 const rank = document.querySelectorAll("#rank");
 const ID = document.querySelectorAll("#name");
 const W = document.querySelectorAll("#W");
@@ -11,7 +10,9 @@ const PF = document.querySelectorAll("#PF");
 const PA = document.querySelectorAll("#PA");
 const DIF = document.querySelectorAll("#DIF");
 const GP = document.querySelectorAll("#GP");
-let _ = window._;
+const A = document.querySelectorAll(".A");
+const B = document.querySelectorAll(".B");
+const _ = window._;
 
 let names;
 let teams = [];
@@ -19,10 +20,12 @@ let games = [];
 let stats = {};
 let playTwice = [];
 let alreadyPlayed = false;
+
 window.addEventListener("beforeunload", function (event) {
   event.preventDefault();
   event.returnValue = "";
 });
+
 let randomizeArray = (arr) => {
   for (let i = arr.length - 1; i > 0; i--) {
     let j = Math.floor(Math.random() * (i + 1));
@@ -43,18 +46,16 @@ let rotate = (players) => {
 };
 
 let generateTeams = (players) => {
-  let p1Idx = 0;
-  let p2Idx = players.length - 1;
   let teamsToGenerate = numberOfTeams(players.length - 1);
   while (teams.length < teamsToGenerate) {
+    let p1Idx = 0;
+    let p2Idx = players.length - 1;
     while (p1Idx < Math.floor(players.length / 2)) {
       teams.push([players[p1Idx], players[p2Idx]]);
       p1Idx++;
       p2Idx--;
     }
     players = rotate(players);
-    p1Idx = 0;
-    p2Idx = players.length - 1;
   }
   teams = teams.filter((team) => !team.includes("---"));
   if (teams.length % 2 === 1) {
@@ -73,8 +74,6 @@ let generateGames = (teams) => {
 
 let displaySchedule = () => {
   generateGames(generateTeams(names));
-  let A = document.querySelectorAll(".A");
-  let B = document.querySelectorAll(".B");
   for (let i = 0; i < games.length; i++) {
     A[i].innerText = games[i][0];
     B[i].innerText = games[i][1];
@@ -98,6 +97,7 @@ namesSubmit.addEventListener("click", function () {
   displaySchedule();
   return stats;
 });
+
 let adjustStatsWinner = (winner, score) => {
   for (let winningPlayer of winner) {
     stats[winningPlayer].GP--;
@@ -107,7 +107,6 @@ let adjustStatsWinner = (winner, score) => {
     stats[winningPlayer].DIF =
       stats[winningPlayer].PF - stats[winningPlayer].PA;
   }
-
   return stats;
 };
 
@@ -119,14 +118,14 @@ let adjustStatsLoser = (loser, score) => {
     stats[losingPlayer].PA -= +score[0];
     stats[losingPlayer].DIF = stats[losingPlayer].PF - stats[losingPlayer].PA;
   }
-
   return stats;
 };
+
 let isWinner = (winner, score) => {
   winner = winner.split(",");
-  /* if (winner.join(",") === playTwice.join(",") && alreadyPlayed === true) {
+  if (winner.join(",") === playTwice.join(",") && alreadyPlayed === true) {
     adjustStatsWinner(winner, score);
-  } */
+  }
   for (let winningPlayer of winner) {
     stats[winningPlayer].GP++;
     stats[winningPlayer].W++;
@@ -138,7 +137,6 @@ let isWinner = (winner, score) => {
       alreadyPlayed = true;
     }
   }
-
   return stats;
 };
 
@@ -159,6 +157,7 @@ let isLoser = (loser, score) => {
   }
   return stats;
 };
+
 let rankTeams = () => {
   let statsArray = Object.entries(stats).map((el) => el[1]);
   let ranked = _.sortBy(statsArray, ["W", "DIF", "PF", "PA"]).reverse();
@@ -171,8 +170,7 @@ let rankTeams = () => {
   ranked.map((row, idx) => (DIF[idx].innerText = row["DIF"]));
   ranked.map((row, idx) => (GP[idx].innerText = row["GP"]));
 };
-let A = document.querySelectorAll(".A");
-let B = document.querySelectorAll(".B");
+
 let sendGameData = (score, idx) => {
   if (+score[0] > +score[1]) {
     isWinner(A[idx].innerText, score);
@@ -189,32 +187,40 @@ let sendGameData = (score, idx) => {
   }
   rankTeams();
 };
-let revertGameData = (score, idx) => {
-  if (+score[0] > +score[1]) {
-    A[idx].style.backgroundColor = "white";
-    A[idx].style.fontWeight = "500";
-    B[idx].style.backgroundColor = "white";
 
+let revertGameData = (score, idx) => {
+  if (A[idx].innerText === playTwice.join(",") && alreadyPlayed === true) {
+    alreadyPlayed = false;
+  }
+  if (B[idx].innerText === playTwice.join(",") && alreadyPlayed === true) {
+    alreadyPlayed = false;
+  }
+  if (+score[0] > +score[1]) {
     adjustStatsWinner(A[idx].innerText.split(","), score);
     adjustStatsLoser(B[idx].innerText.split(","), score);
   } else if (+score[1] > +score[0]) {
-    B[idx].style.backgroundColor = "white";
-    B[idx].style.fontWeight = "500";
-    A[idx].style.backgroundColor = "white";
     adjustStatsWinner(B[idx].innerText.split(","), score.reverse());
     adjustStatsLoser(A[idx].innerText.split(","), score);
   }
+  B[idx].style.backgroundColor = "white";
+  B[idx].style.fontWeight = "500";
+  A[idx].style.backgroundColor = "white";
+  A[idx].style.fontWeight = "500";
   rankTeams();
 };
+
 scoreSubmit.forEach((submit, idx) => {
   submit.addEventListener("click", function () {
     if (/^\d+-\d+$/.test(scoreInput[idx].value)) {
       submit.disabled = true;
-
+      submit.style.backgroundColor = "white";
       sendGameData(scoreInput[idx].value.split("-"), idx);
+    } else {
+      scoreInput[idx].value = "";
     }
     scoreInput[idx].addEventListener("click", function () {
       submit.disabled = false;
+      submit.style.backgroundColor = "rgb(158, 187, 240)";
       revertGameData(scoreInput[idx].value.split("-"), idx);
       scoreInput[idx].value = "";
     });
