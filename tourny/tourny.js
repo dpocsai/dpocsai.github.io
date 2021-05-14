@@ -10,6 +10,7 @@ const PF = document.querySelectorAll("#PF");
 const PA = document.querySelectorAll("#PA");
 const DIF = document.querySelectorAll("#DIF");
 const GP = document.querySelectorAll("#GP");
+const SOS = document.querySelectorAll("#SOS");
 const A = document.querySelectorAll(".A");
 const B = document.querySelectorAll(".B");
 const _ = window._;
@@ -25,6 +26,34 @@ window.addEventListener("beforeunload", function (event) {
   event.preventDefault();
   event.returnValue = "";
 });
+
+let owp = () => {
+  for (let name in stats) {
+    let sum = stats[name].opp
+      .flat()
+      .map((team) => +(stats[team].W / stats[team].GP))
+      .reduce((sum, num) => (sum += num), 0);
+    stats[name].owp = +(sum / (stats[name].GP * 2));
+  }
+};
+let oowp = () => {
+  for (let name in stats) {
+    let sum = stats[name].opp
+      .flat()
+      .map((team) => stats[team].owp)
+      .reduce((sum, num) => (sum += num), 0);
+    stats[name].oowp = +(sum / (stats[name].GP * 2));
+  }
+};
+let calcSOS = () => {
+  owp();
+  oowp();
+  for (let name in stats) {
+    stats[name].SOS = +((2 * stats[name].owp + stats[name].oowp) / 3).toFixed(
+      3
+    );
+  }
+};
 
 let randomizeArray = (arr) => {
   for (let i = arr.length - 1; i > 0; i--) {
@@ -60,16 +89,19 @@ let generateTeams = (players) => {
   teams = teams.filter((team) => !team.includes("---"));
   if (teams.length % 2 === 1) {
     playTwice = [teams[0]];
+
     teams = teams.concat(playTwice);
   }
   return teams;
 };
 
 let generateGames = (teams) => {
+  console.log(teams);
   for (let i = 0; i <= teams.length - 1; i += 2) {
     games.push([teams[i], teams[i + 1]]);
   }
-  return randomizeArray(games);
+  /*  return randomizeArray(games); */
+  return games;
 };
 
 let displaySchedule = () => {
@@ -78,6 +110,7 @@ let displaySchedule = () => {
     A[i].innerText = games[i][0];
     B[i].innerText = games[i][1];
   }
+  names = names.filter((name) => name !== "---");
 };
 
 namesSubmit.addEventListener("click", function () {
@@ -92,10 +125,23 @@ namesSubmit.addEventListener("click", function () {
     names = names.concat("---");
   }
   names.forEach((name) => {
-    stats[name] = { name, W: 0, L: 0, PF: 0, PA: 0, DIF: 0, GP: 0 };
+    if (name !== "---") {
+      stats[name] = {
+        name,
+        W: 0,
+        L: 0,
+        PF: 0,
+        PA: 0,
+        DIF: 0,
+        GP: 0,
+        opp: [],
+        owp: 0,
+        oowp: 0,
+        SOS: 0,
+      };
+    }
   });
   displaySchedule();
-  return stats;
 });
 
 let adjustStatsWinner = (winner, score) => {
@@ -106,6 +152,7 @@ let adjustStatsWinner = (winner, score) => {
     stats[winningPlayer].PA -= +score[1];
     stats[winningPlayer].DIF =
       stats[winningPlayer].PF - stats[winningPlayer].PA;
+    stats[winningPlayer].opp.pop();
   }
   return stats;
 };
@@ -117,14 +164,16 @@ let adjustStatsLoser = (loser, score) => {
     stats[losingPlayer].PF -= +score[1];
     stats[losingPlayer].PA -= +score[0];
     stats[losingPlayer].DIF = stats[losingPlayer].PF - stats[losingPlayer].PA;
+    stats[losingPlayer].opp.pop();
   }
   return stats;
 };
 
-let isWinner = (winner, score) => {
+let isWinner = (winner, score, loser) => {
+  loser = loser.split(",");
   winner = winner.split(",");
   if (winner.join(",") === playTwice.join(",") && alreadyPlayed === true) {
-    adjustStatsWinner(winner, score);
+    return;
   }
   for (let winningPlayer of winner) {
     stats[winningPlayer].GP++;
@@ -133,17 +182,18 @@ let isWinner = (winner, score) => {
     stats[winningPlayer].PA += +score[1];
     stats[winningPlayer].DIF =
       stats[winningPlayer].PF - stats[winningPlayer].PA;
+    stats[winningPlayer].opp.push(loser);
     if (winner.join(",") === playTwice.join(",")) {
       alreadyPlayed = true;
     }
   }
-  return stats;
 };
 
-let isLoser = (loser, score) => {
+let isLoser = (loser, score, winner) => {
   loser = loser.split(",");
+  winner = winner.split(",");
   if (loser.join(",") === playTwice.join(",") && alreadyPlayed === true) {
-    adjustStatsLoser(loser, score);
+    return;
   }
   for (let losingPlayer of loser) {
     stats[losingPlayer].GP++;
@@ -151,16 +201,16 @@ let isLoser = (loser, score) => {
     stats[losingPlayer].PF += +score[1];
     stats[losingPlayer].PA += +score[0];
     stats[losingPlayer].DIF = stats[losingPlayer].PF - stats[losingPlayer].PA;
+    stats[losingPlayer].opp.push(winner);
     if (loser.join(",") === playTwice.join(",")) {
       alreadyPlayed = true;
     }
   }
-  return stats;
 };
 
 let rankTeams = () => {
   let statsArray = Object.entries(stats).map((el) => el[1]);
-  let ranked = _.sortBy(statsArray, ["W", "DIF", "PF", "PA"]).reverse();
+  let ranked = _.sortBy(statsArray, ["W", "DIF", "PF", "SOS"]).reverse();
   rank.forEach((rank, idx) => (rank.innerText = idx + 1 || ""));
   ranked.map((row, idx) => (ID[idx].innerText = row["name"]));
   ranked.map((row, idx) => (W[idx].innerText = row["W"]));
@@ -169,18 +219,27 @@ let rankTeams = () => {
   ranked.map((row, idx) => (PA[idx].innerText = row["PA"]));
   ranked.map((row, idx) => (DIF[idx].innerText = row["DIF"]));
   ranked.map((row, idx) => (GP[idx].innerText = row["GP"]));
+  if (statsArray.every((player) => player.GP <= names.length - 1)) {
+    calcSOS();
+    ranked.map(
+      (row, idx) =>
+        (SOS[idx].innerText = Number.isNaN(row["SOS"])
+          ? "-"
+          : String(row["SOS"]).slice(1).padEnd(4, "0"))
+    );
+  }
 };
 
 let sendGameData = (score, idx) => {
   if (+score[0] > +score[1]) {
-    isWinner(A[idx].innerText, score);
-    isLoser(B[idx].innerText, score);
+    isWinner(A[idx].innerText, score, B[idx].innerText);
+    isLoser(B[idx].innerText, score, A[idx].innerText);
     A[idx].style.backgroundColor = "rgb(194, 240, 194)";
     A[idx].style.fontWeight = "600";
     B[idx].style.backgroundColor = "rgb(255, 179, 179)";
   } else if (+score[1] > +score[0]) {
-    isWinner(B[idx].innerText, score.reverse());
-    isLoser(A[idx].innerText, score);
+    isWinner(B[idx].innerText, score.reverse(), A[idx].innerText);
+    isLoser(A[idx].innerText, score, B[idx].innerText);
     B[idx].style.backgroundColor = "rgb(194, 240, 194)";
     B[idx].style.fontWeight = "600";
     A[idx].style.backgroundColor = "rgb(255, 179, 179)";
