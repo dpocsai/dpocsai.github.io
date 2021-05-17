@@ -3,28 +3,33 @@ body {
 }
 .screen {
   display: grid;
+  grid-template-areas:"a" 
+                      "b";
   grid-template-rows: 3fr 1fr;
-  align-items: flex-end;
   margin-top: 20px;
+  height: 90vh;
+  
 }
 #dealer {
   width: 60%;
   display: inline-block;
+  
 }
 #player {
+
   width: 60%;
   display: inline-block;
+  
 }
 .deal {
   width: 100%;
-  align-self: center;
   height: 60px;
   font-size: 40px;
   margin-top: 30px;
 }
 .table {
-  display: inline-block;
-  margin-left: 20px;
+  grid-area:a;
+  margin-left: 10px;
 }
 
 h2 {
@@ -38,8 +43,8 @@ h1 {
   text-align: center;
   margin: none;
   padding: none;
-  padding: none;
   color: white;
+  grid-area:c;
 }
 .hidden {
   color: rgba(47, 107, 77);
@@ -49,7 +54,7 @@ h1 {
   display: inline-block;
 }
 .buttons {
-  align-self: flex-end;
+  grid-area:b;
 }
 button {
   outline: none;
@@ -59,7 +64,6 @@ button {
   font-size: 30px;
   font-weight: 700;
   height: 50px;
-
   border: 3px solid black;
   background-color: rgba(255, 230, 4, 0.87);
 }
