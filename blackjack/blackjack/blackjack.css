@@ -1,0 +1,169 @@
+body {
+  background-color: rgba(47, 107, 77);
+}
+.screen {
+  display: grid;
+  grid-template-rows: 3fr 1fr;
+  align-items: flex-end;
+  margin-top: 20px;
+}
+#dealer {
+  width: 60%;
+  display: inline-block;
+}
+#player {
+  width: 60%;
+  display: inline-block;
+}
+.deal {
+  width: 100%;
+  align-self: center;
+  height: 60px;
+  font-size: 40px;
+  margin-top: 30px;
+}
+.table {
+  display: inline-block;
+  margin-left: 10px;
+}
+
+h2 {
+  display: inline-block;
+  color: white;
+  margin: none;
+  padding: none;
+}
+h1 {
+  font-size: 30px;
+  text-align: center;
+  margin: none;
+  padding: none;
+  padding: none;
+  color: white;
+}
+.hidden {
+  color: rgba(47, 107, 77);
+}
+
+.count {
+  display: inline-block;
+}
+.buttons {
+  align-self: flex-end;
+}
+button {
+  outline: none;
+  border: none;
+  width: 49%;
+  margin-bottom: none;
+  font-size: 30px;
+  font-weight: 700;
+  height: 50px;
+
+  border: 3px solid black;
+  background-color: rgba(255, 230, 4, 0.87);
+}
+img.card {
+  width: 110px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  vertical-align: initial;
+  box-sizing: initial;
+}
+
+/*
+ * A hand is a div containing cards.
+ */
+.hand {
+  padding: 0;
+  margin: 0;
+}
+.active-hand img.card {
+  cursor: pointer;
+}
+
+/*
+ * A horizontal hand, class="hand hhand".  The enitire card is visible.
+ */
+.hhand {
+  display: inline-block;
+}
+.hhand img.card {
+  padding-top: 10px;
+}
+.hhand.active-hand img.card:hover {
+  padding-top: 0px;
+  padding-bottom: 10px;
+}
+
+/*
+ * A vertical hand, class="hand vhand".  The enitire card is visible.
+ */
+.vhand {
+  display: block;
+}
+.vhand img.card {
+  padding-right: 10px;
+}
+.vhand.active-hand img.card:hover {
+  padding-right: 0px;
+  padding-left: 10px;
+}
+
+/*
+ * A compact horizontal hand.  Only the last card is entirely visible.
+ */
+.hhand-compact {
+  display: inline-block;
+}
+.hhand-compact img.card:first-child {
+  margin-left: 0px;
+  padding-top: 10px;
+}
+.hhand-compact img.card {
+  margin-left: -90px;
+  padding-top: 10px;
+}
+.hhand-compact.active-hand img.card:hover {
+  padding-top: 0px;
+  padding-bottom: 10px;
+}
+
+/*
+ * A compact vertical hand.  Only the last card is entirely visible.
+ */
+.vhand-compact {
+  display: inline-block;
+  vertical-align: top;
+}
+.vhand-compact img.card:first-child {
+  display: block;
+  margin-top: 0px;
+  padding-right: 10px;
+}
+.vhand-compact img.card {
+  display: block;
+  margin-top: -80px;
+  padding-right: 10px;
+}
+.vhand-compact.active-hand img.card:hover,
+.active-hand .vhand-compact img.card:hover {
+  display: block;
+  padding-right: 0px;
+  padding-left: 10px;
+}
+
+/*
+ * A fanned hand.  Only the last card is entirely visible.
+ */
+.fan {
+  display: inline-block;
+  vertical-align: top;
+  position: relative;
+  padding-bottom: 1em;
+}
+.fan img.card {
+  position: absolute;
+  width: 90px;
+}
