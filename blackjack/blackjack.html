@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BlackJack</title>
+    <link rel="stylesheet" href="blackjack.css" />
+    <link
+      rel="stylesheet"
+      href="./richardschneider-cardsJS-fe5e857/cards.css"
+    />
+  </head>
+  <body>
+    <section class="screen">
+      <section class="table">
+        <div id="dealer" class="hand hhand-compact"></div>
+        <div class="count"><h2 class="h2d"></h2></div>
+        <br /><br />
+        <div id="player" class="hand hhand-compact active-hand"></div>
+        <div class="count"><h2 class="h2p"></h2></div>
+
+        <h1 class="hidden">Hello</h1>
+      </section>
+      <section class="buttons">
+        <button class="stay">STAY</button>
+        <button class="hit">HIT</button>
+        <button class="deal">DEAL</button>
+      </section>
+    </section>
+
+    <script type="module" src="blackjack.js"></script>
+  </body>
+</html>
