@@ -1,0 +1,70 @@
+body {
+  padding: 10px;
+  background-color: rgb(18, 18, 19);
+  font-family: "Merriweather", serif;
+  font-size: 16px;
+  min-width: 250px;
+  min-height: 250px;
+  max-width: 700px;
+  max-height: 700px;
+  margin-top: 20px;
+  text-align: center;
+  color: rgb(181, 159, 59);
+}
+h1 {
+  margin-top: 0;
+  font-size: 3rem;
+  margin-bottom: 40px;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+  grid-gap: 5px;
+  justify-items: center;
+  align-items: center;
+  justify-content: space-around;
+}
+.box:after {
+  content: "";
+  display: block;
+  padding-bottom: 100%;
+}
+.box {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  line-height: 2rem;
+  border: 2px solid white;
+  border-radius: 5%;
+  background-color: rgb(18, 18, 19);
+  font-size: 2.5rem;
+  font-weight: bold;
+  vertical-align: middle;
+  box-sizing: border-box;
+  color: white;
+  text-transform: uppercase;
+  text-align: center;
+  user-select: none;
+}
+.buttons {
+  margin-top: 40px;
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+}
+.btn {
+  font-weight: 600;
+  font-family: "Merriweather", serif;
+  margin-left: 15px;
+  font-size: 1.5rem;
+  line-height: 3rem;
+  width: 30%;
+  border: 2px solid white;
+  background-color: rgb(58, 58, 60);
+  color: white;
+  padding: 6px;
+  border-radius: 5%;
+}
