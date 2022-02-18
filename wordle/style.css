@@ -16,6 +16,7 @@ body {
 h1 {
   margin-top: 0;
   font-size: 3rem;
+  margin-bottom: 15px;
 }
 p {
   color: rgb(58, 58, 60);
@@ -30,6 +31,8 @@ p {
   align-items: center;
   justify-content: space-around;
   margin-bottom: 7px;
+  width: 80%;
+  margin: auto;
 }
 .box:after {
   content: "";
@@ -45,7 +48,7 @@ p {
   border: 1px solid white;
   border-radius: 5%;
   background-color: rgb(18, 18, 19);
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: bold;
   vertical-align: middle;
   box-sizing: border-box;
@@ -53,12 +56,14 @@ p {
   text-transform: uppercase;
   text-align: center;
   user-select: none;
+  margin-bottom: 5px;
 }
 .buttons {
   margin-top: 20px;
   display: flex;
   width: 100%;
   justify-content: space-around;
+  margin-bottom: 150px;
 }
 .btn {
   font-weight: 600;
@@ -104,7 +109,7 @@ a {
   border: none;
   border-radius: 10%;
   width: 9%;
-  line-height: 2.2rem;
+  line-height: 3.5rem;
   user-select: none;
 }
 .key-row {

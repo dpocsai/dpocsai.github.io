@@ -15262,6 +15262,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let boxes = [...document.querySelectorAll(".box")];
   let submitguess = document.querySelector("#submitguess");
   let reset = document.querySelector("#reset");
+  let keyboard = document.querySelector(".keys");
   let boxIdx = 0;
 
   boxes.forEach((box) => {
@@ -15348,6 +15349,22 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     if (e.key === "Enter") {
       submitguess.click();
+    }
+  });
+
+  keyboard.addEventListener("click", (e) => {
+    if ("ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("").includes(e.target.innerText)) {
+      boxes.forEach((box) => (box.style.borderColor = "white"));
+      if (boxIdx <= 4) {
+        boxes[boxIdx].innerText = e.target.innerText;
+        boxIdx++;
+      }
+    } else if (e.target.innerText === "⌫") {
+      boxes.forEach((box) => (box.style.borderColor = "white"));
+      if (boxIdx > 0) {
+        boxIdx--;
+        boxes[boxIdx].innerText = "";
+      }
     }
   });
   reset.addEventListener("click", (e) => {
