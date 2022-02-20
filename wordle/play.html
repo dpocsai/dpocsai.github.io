@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wordle</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <a href="play.html"><h1>Wordle</h1></a>
+    <nav>
+      <ul>
+        <div class="navdiv">
+          <a href="play.html"><li>Play</li></a>
+        </div>
+        <div class="navdiv">
+          <a href="solve.html"><li>Solve</li></a>
+        </div>
+      </ul>
+    </nav>
+    <div class="container" id="0">
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+    </div>
+    <div class="container" id="1">
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+    </div>
+    <div class="container" id="2">
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+    </div>
+    <div class="container" id="3">
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+    </div>
+    <div class="container" id="4">
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+    </div>
+    <div class="container" id="5">
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+    </div>
+    <div class="keys">
+      <div class="key-row">
+        <button>Q</button>
+        <button>W</button>
+        <button>E</button>
+        <button>R</button>
+        <button>T</button>
+        <button>Y</button>
+        <button>U</button>
+        <button>I</button>
+        <button>O</button>
+        <button>P</button>
+      </div>
+      <div class="key-row">
+        <button>A</button>
+        <button>S</button>
+        <button>D</button>
+        <button>F</button>
+        <button>G</button>
+        <button>H</button>
+        <button>J</button>
+        <button>K</button>
+        <button>L</button>
+      </div>
+      <div class="key-row">
+        <button id="submit">&#10004;</button>
+        <button>Z</button>
+        <button>X</button>
+        <button>C</button>
+        <button>V</button>
+        <button>B</button>
+        <button>N</button>
+        <button>M</button>
+        <button id="delete">⌫</button>
+      </div>
+    </div>
+
+    <div class="modal">
+      <div class="modal-header">
+        <div class="scoreText">""</div>
+        <div class="answerText">""</div>
+        <button class="close">&times;</button>
+      </div>
+      <div class="container" id="0">
+        <div class="minibox"></div>
+        <div class="minibox"></div>
+        <div class="minibox"></div>
+        <div class="minibox"></div>
+        <div class="minibox"></div>
+      </div>
+      <div class="container" id="1">
+        <div class="minibox"></div>
+        <div class="minibox"></div>
+        <div class="minibox"></div>
+        <div class="minibox"></div>
+        <div class="minibox"></div>
+      </div>
+      <div class="container" id="2">
+        <div class="minibox"></div>
+        <div class="minibox"></div>
+        <div class="minibox"></div>
+        <div class="minibox"></div>
+        <div class="minibox"></div>
+      </div>
+      <div class="container" id="3">
+        <div class="minibox"></div>
+        <div class="minibox"></div>
+        <div class="minibox"></div>
+        <div class="minibox"></div>
+        <div class="minibox"></div>
+      </div>
+      <div class="container" id="4">
+        <div class="minibox"></div>
+        <div class="minibox"></div>
+        <div class="minibox"></div>
+        <div class="minibox"></div>
+        <div class="minibox"></div>
+      </div>
+      <div class="container" id="5">
+        <div class="minibox"></div>
+        <div class="minibox"></div>
+        <div class="minibox"></div>
+        <div class="minibox"></div>
+        <div class="minibox"></div>
+      </div>
+      <a href="play.html"><button id="next">Next &#x2192;</button></a>
+    </div>
+    <div id="overlay"></div>
+    <script src="play.js"></script>
+  </body>
+</html>
