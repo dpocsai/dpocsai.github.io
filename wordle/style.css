@@ -1,0 +1,466 @@
+html {
+  width: 100%;
+  height: 100%;
+}
+html,
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background-color: rgb(18, 18, 19);
+  font-family: "Merriweather", serif;
+  font-size: 16px;
+  width: 100%;
+  min-width: 400px;
+  max-width: 525px;
+  text-align: center;
+  color: rgb(202, 180, 79);
+  text-align: center;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+h1 {
+  margin-top: 1%;
+  font-size: 2.5rem;
+  margin-bottom: 0;
+  font-weight: bold;
+}
+p {
+  color: white;
+  margin: 0;
+  padding: 0;
+  margin-bottom: 5px;
+  text-align: left;
+  font-size: 0.9rem;
+}
+.instructions {
+  width: 65%;
+  margin-left: 25%;
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+  grid-gap: 5px;
+  justify-items: space-around;
+  align-items: center;
+  justify-content: space-around;
+  width: 70%;
+  margin: auto;
+}
+.powerups {
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 5%;
+  vertical-align: center;
+}
+.powerup {
+  width: 20%;
+  line-height: 2.5rem;
+  border-radius: 10%;
+  background-color: black;
+  font-size: 1.2rem;
+  text-align: center;
+  color: white;
+  cursor: pointer;
+}
+span {
+  font-size: 2rem;
+  color: rgb(202, 180, 79);
+}
+#green {
+  color: rgb(120, 177, 89);
+}
+#grey {
+  color: rgb(58, 58, 60);
+}
+.box:after,
+.minibox:after {
+  content: "";
+  display: block;
+  padding-bottom: 100%;
+}
+.box,
+.minibox {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  line-height: 2rem;
+  border: 1px solid white;
+  border-radius: 5%;
+  background-color: rgb(18, 18, 19);
+  font-size: 1.5rem;
+  font-weight: bold;
+  vertical-align: middle;
+  box-sizing: border-box;
+  color: white;
+  text-transform: uppercase;
+  text-align: center;
+  user-select: none;
+  margin-bottom: 5px;
+}
+.buttons {
+  margin-top: 20px;
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  margin-bottom: 10%;
+  margin-top: 5%;
+}
+.btn {
+  font-weight: 600;
+  font-family: "Merriweather", serif;
+  margin-top: 5%;
+  font-size: 1.4rem;
+  line-height: 2.3rem;
+  width: 35%;
+  border: none;
+  border: 1px solid white;
+  background-color: rgb(58, 58, 60);
+  color: white;
+  padding: 6px;
+  border-radius: 5px;
+}
+nav {
+  margin-top: 1%;
+  width: 100%;
+  padding: 0;
+  border-radius: 5%;
+  margin-bottom: 2%;
+}
+.header {
+  margin-top: 1%;
+  display: flex;
+  justify-content: space-between;
+  padding-right: 10px;
+  padding-left: 10px;
+  align-items: center;
+}
+.navdiv {
+  background-color: black;
+  width: 25%;
+  line-height: 1.6rem;
+  border-radius: 5px;
+  border: 1px solid white;
+}
+ul {
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  padding: 0;
+  align-items: flex-start;
+  font-size: 1rem;
+  margin: 0;
+}
+li {
+  color: white;
+  text-decoration: none;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+.keys button {
+  background-color: lightgray;
+  border: none;
+  border-radius: 10%;
+  font-weight: bold;
+  width: 9%;
+  line-height: 3.1rem;
+  user-select: none;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+.keys {
+  position: fixed;
+  bottom: 2%;
+  width: 100%;
+  max-width: 525px;
+  margin-top: auto;
+  margin-bottom: 1%;
+  box-sizing: border-box;
+  color: black;
+}
+
+.key-row {
+  margin-top: 1%;
+  width: 100%;
+  box-sizing: border-box;
+}
+#submit {
+  width: 10%;
+  background-color: rgb(120, 177, 89);
+  font-weight: bold;
+}
+#delete {
+  font-weight: bold;
+}
+
+button:focus {
+  outline: none;
+}
+
+.modal,
+.help-modal {
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  border: 1px solid white;
+  border-radius: 10px;
+  z-index: 10;
+  background-color: rgb(18, 18, 19);
+  color: white;
+  width: 80%;
+  max-width: 400px;
+  max-height: 700px;
+  min-width: 250px;
+  min-height: 350px;
+  height: 60%;
+  padding: 10px;
+  transition: 500ms ease-in-out;
+  font-family: "Merriweather", serif;
+}
+#overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+  background-color: rgb(58, 58, 60);
+  pointer-events: none;
+  transition: 300ms ease-in-out;
+}
+.modal-header,
+.help-modal-header {
+  padding: 5px 11px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+  border-bottom: 1px solid white;
+  margin-bottom: 20px;
+  padding-top: 0;
+  padding-bottom: 5px;
+}
+.modal-header .scoreText {
+  font-size: 1rem;
+  font-weight: bold;
+}
+.modal-header .helpText {
+  font-size: 1rem;
+  font-weight: bold;
+}
+.modal-header .answerText {
+  font-size: 1rem;
+  font-weight: bold;
+}
+.close,
+.help-close {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background: none;
+  font-size: 2rem;
+  font-weight: bold;
+  color: white;
+}
+.modal.active,
+.help-modal.active,
+.startbox.active {
+  transform: translate(-50%, -50%) scale(1);
+}
+#overlay.active {
+  opacity: 0.5;
+  pointer-events: all;
+}
+
+#next,
+.playAgain {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background: none;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+  float: right;
+  font-family: "Merriweather", serif;
+  border: 1px solid white;
+  border-radius: 10px;
+  margin-top: 20px;
+  padding: 5px;
+  background-color: rgb(18, 18, 19);
+}
+#menu {
+  background: black;
+  color: #fff;
+  height: 4%;
+  width: 90%;
+  margin: auto;
+  border-radius: 5px;
+  margin-bottom: 2%;
+  margin-top: 1%;
+}
+#menu ul,
+#menu li {
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+}
+#menu ul {
+  width: 100%;
+}
+#menu li {
+  float: left;
+  display: inline;
+  position: relative;
+}
+#menu a {
+  cursor: pointer;
+  display: block;
+  line-height: 2rem;
+  padding: 0 14px;
+  text-decoration: none;
+  color: lightgray;
+  font-size: 1rem;
+}
+#menu a.dropdown-arrow:after {
+  content: "\2193";
+  margin-left: 5px;
+}
+#menu li a:hover {
+  color: #000000;
+  background: rgb(202, 180, 79);
+}
+#menu input {
+  display: none;
+  margin: 0;
+  padding: 0;
+  height: 45px;
+  width: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+#menu label {
+  display: none;
+  line-height: 45px;
+  text-align: center;
+  position: absolute;
+  left: 35px;
+}
+#menu label:before {
+  font-size: 1.6em;
+  content: "\2261";
+  margin-left: 20px;
+}
+#menu ul.sub-menus {
+  height: auto;
+  overflow: hidden;
+  width: 170px;
+  background: black;
+  position: absolute;
+  z-index: 99;
+  display: none;
+}
+#menu ul.sub-menus li {
+  display: block;
+  width: 100%;
+}
+#menu ul.sub-menus a {
+  color: rgb(202, 180, 79);
+  font-size: 0.9rem;
+}
+#menu li:hover ul.sub-menus {
+  display: block;
+}
+#menu ul.sub-menus a:hover {
+  background: rgb(202, 180, 79);
+  color: black;
+}
+#timer {
+  margin-bottom: 5%;
+  color: white;
+}
+#start {
+  width: 35%;
+  margin: auto;
+  line-height: 2rem;
+  font-size: 2.5rem;
+  color: black;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  border-radius: 5%;
+  background-color: rgb(202, 180, 79);
+  border: 2px solid black;
+  font-family: inherit;
+}
+.startbox {
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  border: 1px solid white;
+  border-radius: 10px;
+  z-index: 10;
+  background-color: rgb(18, 18, 19);
+  color: white;
+  width: 15%;
+  height: 8%;
+  padding: 10px;
+  transition: 300ms ease-in-out;
+  font-family: "Merriweather", serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.info {
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: row;
+  color: white;
+  font-size: 1.5rem;
+}
+
+table.GeneratedTable {
+  width: 95%;
+  margin: auto;
+  background-color: rgb(18, 18, 19);
+  border-collapse: collapse;
+  border: 1px solid white;
+  outline: none;
+  color: white;
+  font-size: 0.7rem;
+  margin-top: 5%;
+}
+
+table.GeneratedTable td,
+table.GeneratedTable th {
+  padding: 2px;
+  border: 1px solid white;
+}
+
+table.GeneratedTable thead {
+  background-color: black;
+  font-size: 0.8rem;
+}
+.scoreText {
+  font-size: 2rem;
+}
+.playAgain {
+  margin-top: 50%;
+}
+.used {
+  background-color: rgb(18, 18, 19);
+  pointer-events: none;
+  opacity: 0.2;
+}
