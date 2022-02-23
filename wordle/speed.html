@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wordle</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <a href="speed.html"><h1>Speed Wordle</h1></a>
+    <nav id="menu">
+      <input
+        type="checkbox"
+        id="responsive-menu"
+        onclick="updatemenu()"
+      /><label></label>
+      <ul>
+        <li>
+          <a class="dropdown-arrow">Modes</a>
+          <ul class="sub-menus">
+            <li><a href="classic.html">Classic Wordle</a></li>
+            <li><a href="speed.html">Speed Wordle</a></li>
+            <li><a href="solve.html">Wordle Solver</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#"><div id="help">Help</div></a>
+        </li>
+      </ul>
+    </nav>
+    <div class="container" id="0">
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+    </div>
+    <div class="container" id="1">
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+    </div>
+    <div class="container" id="2">
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+    </div>
+    <div class="container" id="3">
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+    </div>
+    <div class="container" id="4">
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+    </div>
+    <div class="container" id="5">
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+    </div>
+
+    <div class="keys">
+      <div class="info">
+        <div id="score">0</div>
+        <div id="timer">03:00</div>
+      </div>
+
+      <div class="powerups">
+        <div class="powerup green"><span id="green">&#9724;</span> x 1</div>
+        <div class="powerup grey"><span id="grey">&#9724;</span> x 5</div>
+        <div class="powerup undo" id="undo"><span>&#8630;</span> undo</div>
+      </div>
+      <div class="key-row">
+        <button>Q</button>
+        <button>W</button>
+        <button>E</button>
+        <button>R</button>
+        <button>T</button>
+        <button>Y</button>
+        <button>U</button>
+        <button>I</button>
+        <button>O</button>
+        <button>P</button>
+      </div>
+      <div class="key-row">
+        <button>A</button>
+        <button>S</button>
+        <button>D</button>
+        <button>F</button>
+        <button>G</button>
+        <button>H</button>
+        <button>J</button>
+        <button>K</button>
+        <button>L</button>
+      </div>
+      <div class="key-row">
+        <button id="submit">&#10004;</button>
+        <button>Z</button>
+        <button>X</button>
+        <button>C</button>
+        <button>V</button>
+        <button>B</button>
+        <button>N</button>
+        <button>M</button>
+        <button id="delete">⌫</button>
+      </div>
+    </div>
+
+    <div class="startbox" id="start">Start</div>
+    <div id="overlay"></div>
+    <div class="modal">
+      <div class="modal-header">
+        <button class="close">&times;</button>
+      </div>
+      <div class="scoreText">""</div>
+      <table class="GeneratedTable">
+        <thead>
+          <tr>
+            <th>Words</th>
+            <th>Guesses</th>
+            <th>Time</th>
+            <th>Guess Bonus</th>
+            <th>Time Bonus</th>
+            <th>Score</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+        <tfoot>
+          <tr>
+            <td class="guessCount"></td>
+            <td class="guessAvg"></td>
+            <td class="timeAvg"></td>
+            <td class="guessBonus"></td>
+            <td class="timeBonus"></td>
+            <td class="totalScore"></td>
+          </tr>
+        </tfoot>
+      </table>
+      <a href="speed.html"><div class="playAgain">Play Again &#x2192;</div></a>
+    </div>
+    <div class="help-modal">
+      <div class="help-modal-header">
+        <button class="help-close">&times;</button>
+      </div>
+      <div class="helpText">Powerups:</div>
+      <div class="powerup-info">
+        <div class="powerup green"><span id="green">&#9724;</span> x 1</div>
+        <p>Reveals 1 green tile letter</p>
+      </div>
+      <div class="powerup-info">
+        <div class="powerup grey"><span id="grey">&#9724;</span> x 5</div>
+        <p>Eliminates 5 grey tile letters</p>
+      </div>
+      <div class="powerup-info">
+        <div class="powerup undo" id="undo"><span>&#8630;</span> undo</div>
+        <p>Undoes last guess</p>
+      </div>
+      <div class="helpText">Scoring:</div>
+      <table class="GeneratedTable" id="helpTable">
+        <tr class="theader">
+          <td>Completed</td>
+          <td>Points</td>
+        </tr>
+        <tr>
+          <td>Yes</td>
+          <td>100pts</td>
+        </tr>
+        <tr>
+          <td>No</td>
+          <td>0pts</td>
+        </tr>
+        <tr class="theader">
+          <td>Time</td>
+          <td>Points</td>
+        </tr>
+        <tr>
+          <td>0 - 10 sec</td>
+          <td>100</td>
+        </tr>
+        <tr>
+          <td>11 - 20 sec</td>
+          <td>70</td>
+        </tr>
+        <tr>
+          <td>21 - 30 sec</td>
+          <td>40</td>
+        </tr>
+        <tr>
+          <td>31 - 40 sec</td>
+          <td>20</td>
+        </tr>
+        <tr>
+          <td>41 - 50 sec</td>
+          <td>10</td>
+        </tr>
+        <tr class="theader">
+          <td>Guesses</td>
+          <td>Points</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>100</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>70</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>40</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>20</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>10</td>
+        </tr>
+      </table>
+    </div>
+    <script src="speed.js"></script>
+  </body>
+</html>
