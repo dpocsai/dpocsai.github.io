@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Buzz Words</title>
+    <script
+      src="https://kit.fontawesome.com/ac87e4a60b.js"
+      crossorigin="anonymous"
+    ></script>
+    <link href="https://cdn.lineicons.com/3.0/lineicons.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <header id="header">
+        <h1 class="title">
+          <a href="https://dpocsai.github.io/buzzwords/index.html"
+            >Buzz Words</a
+          >
+        </h1>
+      </header>
+
+      <div id="words" class="active">
+        <div class="score-data">
+          <p class="score-data-label">Points</p>
+          <div class="score-data-info">
+            <span id="current-score">0</span>
+            <div class="progress-bar-score">
+              <div class="progress-score"></div>
+            </div>
+            <span id="max-score">0</span>
+          </div>
+        </div>
+        <div class="words-middle">
+          <h2 id="current-rank">Beginner</h2>
+          <div class="progress-bar-rank">
+            <div class="progress-rank"></div>
+          </div>
+          <i class="fa fa-solid fa-chevron-down dropdown"></i>
+        </div>
+
+        <div id="dropdown-content">
+          <table class="customTable">
+            <tbody>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+            <div class="close-dropdown close-btn">
+              <i class="lni lni-close close-btn"></i>
+            </div>
+            <div class="reveal">Reveal</div>
+          </table>
+        </div>
+        <div class="words-data">
+          <p class="words-data-label">Words</p>
+          <div class="words-data-info">
+            <span id="current-words">0</span>
+            <div class="progress-bar-words">
+              <div class="progress-words"></div>
+            </div>
+            <span id="total-words">0</span>
+          </div>
+        </div>
+      </div>
+
+      <div id="input">
+        <div id="inputBox">
+          <span id="inputWord"></span><span id="blinking-cursor">|</span>
+          <img id="backspace" src="backspace2.png" />
+        </div>
+      </div>
+      <div id="beehive">
+        <ul id="grid" class="clear">
+          <li>
+            <div class="hexagon hidden-hexagon"></div>
+          </li>
+          <li>
+            <div class="hexagon outer-hexagon"></div>
+          </li>
+          <li>
+            <div class="hexagon outer-hexagon"></div>
+          </li>
+          <li>
+            <div class="hexagon outer-hexagon"></div>
+          </li>
+          <li>
+            <div class="hexagon middle-hexagon"></div>
+          </li>
+          <li>
+            <div class="hexagon outer-hexagon"></div>
+          </li>
+          <li>
+            <div class="hexagon hidden-hexagon"></div>
+          </li>
+          <li>
+            <div class="hexagon outer-hexagon"></div>
+          </li>
+          <li>
+            <div class="hexagon outer-hexagon"></div>
+          </li>
+        </ul>
+      </div>
+      <div id="controls">
+        <div class="button" id="clear">
+          <i class="lni lni-close"></i>
+          <p>Clear</p>
+        </div>
+        <div class="button" id="shuffle">
+          <i class="lni lni-spinner-arrow"></i>
+          <p>Shuffle</p>
+        </div>
+        <div class="button" id="check">
+          <i class="lni lni-checkmark"></i>
+          <p>Check</p>
+        </div>
+      </div>
+    </div>
+    <div class="overlay"></div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
